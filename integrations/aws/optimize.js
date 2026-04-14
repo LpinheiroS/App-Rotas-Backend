@@ -1,7 +1,7 @@
 const { LocationClient } = require("@aws-sdk/client-location");
 
-const awsLocationClient = new LocationClient({ 
-    region: process.env.AWS_REGION || "us-east-1" 
+const awsLocationClient = new LocationClient({
+    region: process.env.AWS_REGION
 });
 
 const optimizeWaypoints = async (coordinatesList) => {

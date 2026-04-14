@@ -1,14 +1,22 @@
-const { LocationClient } = require("@aws-sdk/client-location");
+const { GeoPlacesClient, GeocodeCommand } = require("@aws-sdk/client-geo-places");
 
-const awsLocationClient = new LocationClient({ 
-    region: process.env.AWS_REGION || "us-east-1"
+const client = new GeoPlacesClient({
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
 });
 
 const geocodeAddress = async (address) => {
-    // TODO: Configuração básica do integrador aws geocode
-    // Aqui vai a chamada de API usando awsLocationClient (ex: SearchPlaceIndexForTextCommand)
-    // Retorna as coordenadas do endereço.
-    return { latitude: 0, longitude: 0 };
+    const command = new GeocodeCommand({
+        QueryText: address,
+        MaxResults: 1
+    });
+
+    const response = await client.send(command);
+    return response;
+    //return { latitude: 0, longitude: 0 };
 };
 
 module.exports = { geocodeAddress };
