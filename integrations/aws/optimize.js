@@ -9,17 +9,7 @@ const client = new GeoRoutesClient({
 });
 
 const optimizeWaypoints = async (coordinatesList) => {
-    const command = new OptimizeWaypointsCommand(
-        {
-            "Origin": [-46.4938375, -23.4471931],
-            "Waypoints": [
-                { "Position": [-46.6032701, -23.4800747] },
-                { "Position": [-46.5766424, -23.5402524] },
-                { "Position": [-46.6163355, -23.5451136] },
-                { "Position": [-46.4938082, -23.4333006] }
-            ]
-        }
-    );
+    const command = new OptimizeWaypointsCommand(coordinatesList);
     const response = await client.send(command);
 
     return response;

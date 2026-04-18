@@ -16,7 +16,6 @@ const geocodeAddress = async (address) => {
 
     const response = await client.send(command);
     return response;
-    //return { latitude: 0, longitude: 0 };
 };
 
 module.exports = { geocodeAddress };

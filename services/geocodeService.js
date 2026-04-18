@@ -8,7 +8,7 @@ const geocodeAddresses = async (addresses) => {
         const addressString = `${address.rua}, ${address.numero}, ${address.cep}`;
         const coord = await geocodeIntegration.geocodeAddress(addressString);
         const [lon, lat] = coord.ResultItems[0].Position;
-        const position = { lon, lat };
+        const position = { lon, lat, isStart: address.isStart, isEnd: address.isEnd, index: address.index };
 
         coordinates.push(position);
     }
